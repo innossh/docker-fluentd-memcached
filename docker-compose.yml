@@ -1,0 +1,11 @@
+fluentd:
+  build: ./fluentd
+  ports:
+    - "8888:8888"
+  links:
+    - "memcached:memcached"
+
+memcached:
+  build: ./memcached
+  ports:
+    - "11211:11211"
