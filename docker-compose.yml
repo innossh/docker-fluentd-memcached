@@ -15,5 +15,6 @@ mysql:
   build: ./mysql
   ports:
     - "3306:3306"
+    - "11222:11222"
   environment:
     MYSQL_ROOT_PASSWORD: root

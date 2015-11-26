@@ -40,9 +40,9 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 
 VOLUME /var/lib/mysql
 
+COPY docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 3306
+EXPOSE 11222
 CMD ["mysqld"]
-

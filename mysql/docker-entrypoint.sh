@@ -55,7 +55,7 @@ if [ "$1" = 'mysqld' ]; then
 			DELETE FROM mysql.user ;
 			CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' ;
 			GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION ;
-			DROP DATABASE IF EXISTS test ;
+			CREATE DATABASE IF NOT EXISTS test ;
 			FLUSH PRIVILEGES ;
 		EOSQL
 
@@ -101,5 +101,5 @@ if [ "$1" = 'mysqld' ]; then
 	chown -R mysql:mysql "$DATADIR"
 fi
 
-exec "$@"
-
+# work around for innodb-memcached-plugin
+exec "$@" --daemon_memcached_option="-p11222"
