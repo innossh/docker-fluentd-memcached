@@ -4,8 +4,16 @@ fluentd:
     - "8888:8888"
   links:
     - "memcached:memcached"
+    - "mysql:mysql"
 
 memcached:
   build: ./memcached
   ports:
     - "11211:11211"
+
+mysql:
+  build: ./mysql
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
