@@ -7,7 +7,7 @@ fluentd:
     - "mysql:mysql"
 
 memcached:
-  build: ./memcached
+  image: memcached:1.4.31-alpine
   ports:
     - "11211:11211"
 
