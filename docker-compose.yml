@@ -14,7 +14,10 @@ memcached:
     - "11211:11211"
 
 mysql:
-  build: ./mysql
+  image: mysql:5.6
+  volumes:
+    - ./mysql/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh
+    - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   ports:
     - "3306:3306"
     - "11222:11222"
