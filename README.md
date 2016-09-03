@@ -1,18 +1,18 @@
 # docker-fluentd-memcached
 
-a sample docker containers for running Fluentd + Memcached (and Fluentd + MySQL innodb memcached plugin)
+A sample of docker containers for running Fluentd + Memcached (and Fluentd + MySQL innodb memcached plugin)
 
 ## Usage
 
 ```sh
 $ docker-compose up -d
-$ curl http://<DOCKER_HOST>:8888/memcached.test -d 'json={"key":"foo", "value":"bar"}'
+$ curl http://localhost:8888/memcached.test -d 'json={"key":"foo", "value":"bar"}'
 
 # wait a little...
 
-$ telnet <DOCKER_HOST> 11211
-Trying <DOCKER_HOST>...
-Connected to <DOCKER_HOST>
+$ telnet localhost 11211
+Trying ::1...
+Connected to localhost.
 Escape character is '^]'.
 get foo
 VALUE foo 1 13
@@ -21,14 +21,13 @@ END
 quit
 Connection closed by foreign host.
 
-
-$ curl http://<DOCKER_HOST>:8888/mysql.test -d 'json={"key":"hoge", "value":"fuga"}'
+$ curl http://localhost:8888/mysql.test -d 'json={"key":"hoge", "value":"fuga"}'
 
 # wait a little...
 
-$ telnet <DOCKER_HOST> 11222
-Trying <DOCKER_HOST>...
-Connected to <DOCKER_HOST>
+$ telnet localhost 11222
+Trying ::1...
+Connected to localhost.
 Escape character is '^]'.
 get hoge
 VALUE hoge 1 14
@@ -37,7 +36,7 @@ END
 quit
 Connection closed by foreign host.
 
-$ mysql -uroot -h192.168.99.100 -p
+$ mysql -uroot -h127.0.0.1 -p
 Enter password:
 ...
 mysql> select * from test.demo_test;

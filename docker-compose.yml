@@ -1,5 +1,7 @@
 fluentd:
   build: ./fluentd
+  volumes:
+    - ./fluentd/etc:/fluentd/etc
   ports:
     - "8888:8888"
   links:
@@ -7,12 +9,15 @@ fluentd:
     - "mysql:mysql"
 
 memcached:
-  build: ./memcached
+  image: memcached:1.4.31-alpine
   ports:
     - "11211:11211"
 
 mysql:
-  build: ./mysql
+  image: mysql:5.6
+  volumes:
+    - ./mysql/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh
+    - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   ports:
     - "3306:3306"
     - "11222:11222"
