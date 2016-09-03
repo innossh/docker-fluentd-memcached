@@ -1,5 +1,7 @@
 fluentd:
   build: ./fluentd
+  volumes:
+    - ./fluentd/etc:/fluentd/etc
   ports:
     - "8888:8888"
   links:
